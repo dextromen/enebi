@@ -1,0 +1,773 @@
+#:include widgets.kv
+#: import ew kivy.uix.effectwidget
+
+<Hangman>:
+    display:display
+    button_area:button_area
+    score:score
+    header:header
+    pos_hint:{"center_x":0.5}
+    BoxLayout:
+        orientation:"vertical"
+        spacing:20
+        Header:
+            id:header
+        Button:
+            size_hint:1,None
+            height:dp(60)
+            text:"დაამატე ახალი სიტყვები"
+            font_name:"BPG2.ttf"
+            on_release:app.buy(5)
+        # BoxLayout:
+            
+        #     pos_hint:{"center_x":.5,"center_y":.5}
+        #     size_hint:None,None
+        #     width:dp(320)
+        #     height:dp(30)
+        #     DropDown_Button:
+        #         size_hint:0.2,1
+        #         on_release:app.category_dropdown.category_load_prev()
+        #         MDIconButton:
+        #             icon:"arrow-left-bold"
+        #             line_color:1,0,0,1
+        #             theme_icon_color: "Custom"
+        #             icon_color:0,0,0,0.5
+        #             icon_size:dp(30)
+        #             pos_hint:{"center_y":.525,"center_x":.5}
+        #             on_release:app.category_dropdown.category_load_prev()
+        #             # background_normal:"images/arrow_left.png"
+        #     DropDown_Open_Button:
+        #         id:dropdown_key
+        #         text:app.category_names[0]
+        #         on_release:app.category_dropdown.open(self)
+        #         size_hint:.6,1
+        #         color:0,0,0,1
+        #         font_name:"DejaVuSans.ttf"
+        #         pos_hint:{"center_x":.5}
+        #     DropDown_Button:
+        #         size_hint:0.2,1
+        #         on_release:app.category_dropdown.category_load_prev()
+        #         MDIconButton:
+        #             icon:"arrow-right-bold"
+        #             line_color:1,0,0,1
+        #             theme_icon_color: "Custom"
+        #             icon_color:0,0,0,0.5
+        #             icon_size:dp(30)
+        #             pos_hint:{"center_y":.525,"center_x":.5}
+        #             on_release:app.category_dropdown.category_load_next()
+        
+        
+        
+        BoxLayout:
+            size_hint:None,None
+            width:dp(320)
+            height:dp(20)
+            pos_hint:{"center_x":.5,"center_y":.5}
+            # MDIconButton:
+            #     icon:'arrow-left'
+            #     size_hint:0.2,1
+            #     on_release:app.root.current="main"
+            # BoxLayout:
+            Label:
+                text:f"გამოიცანი სიტყვა"
+                pos_hint:{"center_x":0.5}
+                font_name:"DejaVuSans.ttf"
+                color:0,0,0,1
+                height:self.texture_size[1]
+                font_size:sp(15)
+            # Widget:
+                # size_hint:.2,1
+        
+        
+        
+        
+        MDBoxLayout:        
+            orientation:"vertical"
+            spacing:20
+            size_hint_x:None
+            width:dp(360)
+            pos_hint:{"center_x":0.5}
+            BoxLayout:
+                size_hint:1,None
+                height:dp(20)
+                Widget:
+                    size_hint:0.2,1
+                BoxLayout:
+                    MDLabel:
+                        text:f"{root.qartuli}"
+                        pos_hint:{"center_x":0.5}
+                        font_name:"DejaVuSans.ttf"
+                        color:0,0,0,1
+                        height:self.texture_size[1]
+                        font_size:sp(25)
+                        halign:'center'
+                Widget:
+                    size_hint:.2,1
+            
+      
+                
+                
+                    
+            BoxLayout:
+                id: display
+                # padding:[30,0]
+                orientation:"vertical"
+                
+                BoxLayout:
+                    size_hint:None,1
+                    width:self.height
+                    pos_hint:{"center_x":.5}
+                    BoxLayout:
+                        orientation:'vertical'
+                        spacing:dp(20)
+                        BoxLayout:
+                            
+                            Label:
+                                id:score
+                                text: f"{root.n}"
+                                font_name:"mailrays.ttf"
+                                color:1,0,0,1
+                                pos_hint:{"y":0}
+                                font_size:sp(120)
+                        BoxLayout:
+                            
+                            Label:
+                                # id:score
+                                text: f"ქულა"
+                                color:1,1,0,1
+                                font_name:"DejaVuSans.ttf"
+                                # pos_hint:{"center_y":0.25}
+                                font_size:sp(20)
+                            
+                BoxLayout:
+                    size_hint:1,0.5
+                    MDLabel:
+                        text: root.sityva
+                        font_size:sp(40)
+                        halign:"center"
+                        outline_color:1,0,0
+                        outline_width:0.2
+                        color:0,0,0,1
+                        # font_name:"BPG2.ttf"
+
+        GridLayout:
+            size_hint:1,None
+            height:dp(180)
+            cols:1
+            id:button_area
+            pos_hint:{"center_x":.5}
+                
+<Market>:
+    size_hint:None,None
+    size:dp(200),dp(200)
+    GridLayout:
+        cols:2
+        Button:
+            text:"5 sityva"
+            on_release:app.buy(5)
+        Button:
+            text:"5 sityva"
+            on_release:app.buy(5)
+        Button:
+            text:"5 sityva"
+            on_release:app.buy(5)
+        
+
+
+<Carousel_P>:
+    dropdown_key:dropdown_key
+    scroll:scroll
+    size_hint_x:1
+    background_color:1,1,1,0
+    pos_hint:{"center_x":.5,"center_y":.5}
+    title_color:0,0,0,0
+    size:root.size
+    separator_color:0,1,0,0
+    separator_height:0
+    BoxLayout:
+        orientation:"vertical"
+        size_hint_x:1
+        width:dp(360)
+        spacing:dp(20)
+        pos_hint:{"center_x":.5,"center_y":.5}
+        BoxLayout:
+            size_hint:1,None
+            height:dp(40)
+            Widget:
+                size_hint:0.8,1
+            MDIconButton:
+                icon:"close"
+                on_release:root.dismiss()
+                theme_icon_color: "Custom"
+                icon_color:1,1,1,1
+        BoxLayout:
+            size_hint:None,None
+            height:dp(40)
+            width:dp(300)
+            pos_hint:{"center_x":.5,"center_y":.5}
+            MDBoxLayout:
+                pos_hint:{"center_x":.5,"center_y":.5}
+                md_bg_color:1,1,1,1
+                size_hint:1,None
+                height:dp(40)
+                DropDown_Button:
+                    size_hint:0.2,1
+                    on_release:app.carousel_dropdown.category_load_prev()
+                    MDIconButton:
+                        icon:"arrow-left-bold"
+                        line_color:1,0,0,1
+                        theme_icon_color: "Custom"
+                        icon_color:0,0,0,0.5
+                        icon_size:dp(30)
+                        pos_hint:{"center_y":.525,"center_x":.5}
+                        on_release:app.carousel_dropdown.category_load_prev()
+                        # background_normal:"images/arrow_left.png"
+                DropDown_Button:
+                    on_release:app.carousel_dropdown.open(self)
+                    size_hint:.6,1
+                    color:0,0,0,1
+                    
+                    pos_hint:{"center_x":.5}
+                    Label:
+                        
+                        id:dropdown_key
+                        
+                        font_name:"DejaVuSans.ttf"
+                        text:app.category_names[0]
+                        color:0,0,0,1
+                DropDown_Button:
+                    size_hint:0.2,1
+                    on_release:app.carousel_dropdown.category_load_prev()
+                    MDIconButton:
+                        icon:"arrow-right-bold"
+                        line_color:1,0,0,1
+                        theme_icon_color: "Custom"
+                        icon_color:0,0,0,0.5
+                        icon_size:dp(30)
+                        pos_hint:{"center_y":.525,"center_x":.1}
+                        on_release:app.carousel_dropdown.category_load_next()
+        BoxLayout:
+            id:yz
+            orientation:"vertical"
+            BoxLayout:
+                MDIconButton:
+                    size_hint:None,1
+                    width:dp(30)
+                    theme_icon_color: "Custom"
+                    icon_color:1,1,1,0.6
+                    icon:"arrow-left"
+                    on_release:scroll.load_previous()
+                Carousel:
+                    id:scroll
+                    on_index:app.scrolling_points()
+                    loop:True
+                    min_move:0.01
+                MDIconButton:
+                    size_hint:None,1
+                    width:dp(30)
+                    theme_icon_color: "Custom"
+                    icon_color:1,1,1,0.6
+                    on_release:scroll.load_next()
+                    icon:"arrow-right"
+        BoxLayout:
+            size_hint:1,0.2
+            Button:
+                text:"ganmarteba"
+                # on_release:app.save
+                # on_release:app.shpw
+                on_release:app.show_translation(dropdown_key.text,scroll.current_slide.label.text)
+                
+
+
+<Main_Screen>:
+    # dropdown_key:dropdown_key
+    scroll:scroll
+    listview:listview
+    switch:switch
+    carousel:carousel
+    balance:balance
+    carousel_view:carousel_view
+    # switch_button:switch_button
+    header:header
+    # buy_words:buy_words
+    pos_hint:{"center_x":.5}
+    
+    # MDBoxLayout:
+    #     # md_bg_color:0,0,0,.1
+    #     orientation:"vertical"
+    #     # padding:[dp(10),0]
+    #     spacing:dp(20)
+    BoxLayout:
+        
+                        
+                #         Widget:
+                #             size_hint:1,0.1
+                    
+                # BoxLayout:
+                            
+                #     BoxLayout:
+                #         orientation:"vertical"
+                #         spacing:dp(5)
+                #         Label:
+                #             text:"უკვე იცი"
+                #             font_name:"DejaVuSans.ttf"
+                #         Label:
+                #             text:"27"
+                #             font_size:sp(21)
+                #         Label:
+                #             text:"სიტყვა"
+                #             font_name:"DejaVuSans.ttf"
+                
+                # # BoxLayout:
+                # BoxLayout:
+                #     orientation:"vertical"
+                    
+                #     Label:
+                #         id:balance
+                #         # size_hint:0.3,1
+                #         text:app.balance_str
+                #         font_name:"DejaVuSans.ttf"#"font/cartoon.ttf"                                
+                #         font_size:sp(25)
+                        # pos_hint:{"center_x":0.5, "center_y":.5}
+                    # Widget:
+                    #     size_hint:1,0.1
+                        
+                    # BoxLayout:
+                        
+                    #     B
+                        # BoxLayout:
+                        #     orientation:"vertical"
+                        #     Label:
+                        #         text:"ახლა სწავლობ"
+                        #         font_name:"DejaVuSans.ttf"
+                        #     Label:
+                        #         text:"27"
+                # Widget:
+                #     size_hint:1,None
+                #     height:dp(20)
+
+                # Widget:
+                #     size_hint:0.4,1
+                # Image:
+                #     size_hint:0.5,0.5
+                #     pos_hint:{"center_y":.5}
+                #     source:"images/tick.png"
+                # Label:
+                    
+                #     size_hint:0.4,1
+                #     text:"200"
+                #     font_name:"font/cartoon.ttf"
+                #     font_size:sp(25)
+                #     pos_hint:{"x":0, "center_y":.5}
+                # Widget:
+                #     size_hint:0.4,1
+            
+
+            
+            # BoxLayout:
+            #     
+            #     Widget:
+            #         size_hint:0.4,1
+                
+                
+            #     Image:
+            #         id:gold
+            #         size_hint:0.5,.9
+            #         pos_hint:{"center_y":.5}
+            #         source:"images/gold_no_glow.png"
+            #     Widget:
+            #         size_hint:0.4,1
+            # BoxLayout:
+                # Button:
+
+
+
+        MDBoxLayout:
+            # size_hint:1,1
+            size_hint:1,1
+            # radius:[dp(24), dp(24),0,0]
+            md_bg_color:1,1,1,1
+            # width:dp(360)
+            pos_hint:{"center_x":.5, "center_y":.5}
+            orientation:"vertical"
+            
+            elevation: 4.5
+            shadow_offset: 0, 6
+           
+
+
+            # Widget:
+            #     size_hint_y:None
+            #     height:dp(10)
+
+            MDBottomNavigation:
+                id:switch
+                listview:listview
+                carousel_view:carousel_view
+                panel_color:0,0,0,.0
+                icon_color_active: 1,1,1,.5
+                use_text:False
+                size_hint_x:1
+                set_bars_color:True
+                width:root.width
+                pos_hint:{"center_x":.5}
+                height:dp(50)
+                MDBottomNavigationItem:
+                    id:listview
+                    name:"listview"
+                    scroll:scroll
+                    # text:"scroll"
+                    icon:"account-circle"
+                    pos_hint:{"center_x":.5}
+                    BoxLayout:
+                        orientation:"vertical"
+                        spacing:dp(20)
+                        MDBoxLayout:
+                            # md_bg_color:1,0,0,1
+                            size_hint:None,None
+                            width:root.width
+                            height:dp(220)
+                            pos_hint:{"center_x":.5}
+                            # canvas.before:
+                            #     Color:
+                            #         rgba:0,0,0,.5
+                            #     Rectangle:
+                            #         pos: self.pos
+                            #         size: self.size
+                            #         source: 'background.png'
+                            MDBoxLayout:
+                                md_bg_color:1,1,1,0.3
+                                size_hint:1,1
+                                radius:[0,0,20,20]
+                                id:header
+                                
+                                orientation:"vertical"
+                                BoxLayout:
+                                    BoxLayout:
+                                        orientation:"vertical"
+                                        
+                                        BoxLayout:
+                                            size_hint:1,None
+                                            height:dp(50)
+                                            Label:
+                                                text:"შენი პროგრესი"
+                                                color:0,0,0,1
+                                                font_name:"BPG2.ttf"
+                                                halign:"left"
+                                            Widget:
+                                                size_hint:0.5,1
+                                            BoxLayout:
+                                                # size_hint:1,.3
+                                                # orientation:"vertical"
+                                                Label:
+                                                    text:"ბალანსი"    
+                                                    font_name:"BPG2.ttf"
+                                                    color:0,0,0,1
+                                                    # font_size:sp(18)
+                                                Label:
+                                                    id:balance
+                                                    # size_hint:1,0.8
+                                                    # valign:"center"
+                                                    text:app.balance_str
+                                                    font_name:"BPG2.ttf"#"font/cartoon.ttf"                                
+                                                    # font_size:sp(25)
+                                                    color:0,0,0,1
+                                        BoxLayout:
+                                            size_hint:1,.8
+                                            padding:[dp(20),0]
+                                            BoxLayout:
+                                                size_hint:0.35,1
+                                                
+                                                Widget:
+                                                    size_hint:0.1,1
+                                                MDLabel:                                                
+                                                    size_hint:None,None
+                                                    size:dp(100),dp(100)
+                                                    canvas:
+                                                        Color:
+                                                            rgb:1,0,0
+                                                        Line:
+                                                            width:dp(2)
+                                                            ellipse:self.x,self.y,dp(100),dp(100)
+                                                    id:lb
+                                                    color:0,0,0,1
+                                                    font_size:sp(34)
+                                                    # size_hint:1,.7
+                                                    text:"27%"
+                                                    halign:"center"
+                                                    pos_hint:{"center_x":0, "center_y":.5}
+                                                Widget:
+                                                    size_hint:0.1,1
+                                                Widget:
+                                                    size_hint:None,1
+                                                    width:dp(20)
+                                            
+                                            BoxLayout:
+                                                size_hint:0.65,1
+                                                BoxLayout:
+                                                    
+                                                    Button:
+                                                        text:"ilve ici"
+                                                BoxLayout:
+
+                                                    Button:
+                                                        text:"axla swavlob"
+                                            
+                                        # BoxLayout:
+                                        #     size_hint:1,None
+                                        #     height:dp(50)
+                                        #     Button:
+                                        
+                                # MDBoxLayout:
+                                #     width:dp(320)
+                                #     orientation:"horizontal"
+                                #     spacing:dp(10)
+                                    
+                                #     BoxLayout:
+                                #         # orientation:"horizontal"
+                                #         width:dp(320)
+                                #         # padding:[dp(10),0]
+                                #         BoxLayout:
+                                #             orientation:"vertical"
+                                #             size_hint:1,1
+                                #             pos_hint:{"center_x":.5}
+                                #             BoxLayout:
+                                #                 BoxLayout:
+                                #                     orientation:"vertical"
+                                #                     size_hint_x:0.3
+                                #                     Label:
+                                #                         text:"უკვე იცი"
+                                #                         font_name:"DejaVuSans.ttf"
+                                #                         font_size:sp(18)
+                                #                     Label:
+                                #                         text:"27"
+                                #                         font_size:sp(25)
+                                #                     Label:
+                                #                         text:"სიტყვა"
+                                #                         font_name:"DejaVuSans.ttf"
+                                #                         font_size:sp(18)
+                                #                 BoxLayout:
+                                #                     orientation:"vertical"
+                                #                     Label:
+                                #                         text:"შენი პროგრესი"
+                                #                         font_name:"BPG2.ttf"
+                                #                         halign:"center"
+                                #                     BoxLayout:
+                                #                         size_hint:None,None
+                                #                         size:dp(100),dp(100)
+                                #                         # size:lb.texture_size[1],lb.texture_size[1],
+                                #                         pos_hint:{"center_x":.5, "center_y":.5}
+                                                        
+                                                        
+                                                        
+
+
+                                #                 BoxLayout:
+                                #                     orientation:'vertical'
+                                #                     size_hint_x:0.3
+                                #                     # pos_hint:{"center_x":1}
+                                                    
+                                #                     Widget:
+                                #                         size_hint:1,0.4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        BoxLayout:
+                            orientation:'vertical'
+                            size_hint:0.90,1
+                            pos_hint:{"center_x":.5}
+                            spacing:dp(10)
+                            canvas.before:
+                                Color:
+                                    rgba:1,0,0,.2
+                                Rectangle:
+                                    size:self.size
+                                    pos:self.pos
+                            BoxLayout:
+                                size_hint_y:None
+                                height:dp(50)
+                                canvas:
+                                    Color:
+                                        rgba:1,0,0,1
+                                    RoundedRectangle:
+                                        size:self.size
+                                        pos:self.pos
+                                        radius:[dp(6),dp(6),0,0]
+                                Label:
+                                    text:"axla swavlob"
+                                    color:0,0,0,1
+                                    
+                            BoxLayout:
+                                size_hint_x:None
+                                width:self.parent.width-dp(10)
+                                pos_hint:{"center_x":.5}
+                                ScrollView:
+                                    
+                                    MDGridLayout:
+                                        id:scroll
+                                        md_bg_color:0,0,0,0
+                                        # md_bg_color:0,0,0,0.2
+                                        cols:1
+                                        size_hint:1,None
+                                        radius:[16]
+                                        height:self.minimum_height
+                                        spacing:dp(5)
+                    
+                                
+                       
+                                
+                MDBottomNavigationItem:
+                    id:carousel_view
+                    name:"carousel_view"
+                    # text:"carousel"
+                    carousel:carousel
+                    icon:"book-open-variant"
+                    size_hint_x:1
+                    # width:root.width
+                    md_bg_color:0,0,0,1
+                    pos_hint:{"center_x":.5}
+                    MDBoxLayout:
+                        id:yz
+                        orientation:"vertical"
+                        MDBoxLayout:
+                            size_hint:1,None
+                            height:dp(50)
+                            md_bg_color:1,1,1,1
+                            Label:
+                                text:"შენი პროგრესი"
+                                color:0,0,0,1
+                                font_name:"BPG2.ttf"
+                                halign:"left"
+                            Widget:
+                                size_hint:0.5,1
+                            BoxLayout:
+                                # size_hint:1,.3
+                                # orientation:"vertical"
+                                Label:
+                                    text:"ბალანსი"    
+                                    font_name:"BPG2.ttf"
+                                    color:0,0,0,1
+                                    # font_size:sp(18)
+                                Label:
+                                    id:balance
+                                    # size_hint:1,0.8
+                                    # valign:"center"
+                                    text:app.balance_str
+                                    font_name:"BPG2.ttf"#"font/cartoon.ttf"                                
+                                    # font_size:sp(25)
+                                    color:0,0,0,1
+                        
+                        
+                        Carousel:
+                            id:carousel
+                            on_index:app.scrolling_points()
+                            loop:True
+                            direction:"bottom"
+                            size_hint_x:1
+                            min_move:0.01
+                            pos_hint:{"center_x":.5}
+                               
+                
+                MDBottomNavigationItem:
+                    icon:'cart'
+                    size_hint_x:None
+                    width:dp(320)
+                    pos_hint:{"center_x":.5}
+                    BoxLayout:
+                        orientation:"vertical"
+                        GMHeader:
+                        GridLayout:
+                            cols:2
+                            Button:
+                                text:"5 sityva"
+                                on_release:app.buy(5)
+                            Button:
+                                text:"5 sityva"
+                                on_release:app.buy(5)
+                            Button:
+                                text:"5 sityva"
+                                on_release:app.buy(5)
+
+
+
+                MDBottomNavigationItem:
+                    name:"hangman"
+                    icon:"gamepad-variant"
+                    on_tab_release:
+                        app.root.current="hangman"
+                        switch.switch_tab("listview")
+                    # Hangman:
+            # MDFloatLayout:
+            #     id:flo
+            #     md_bg_color:1,1,1,0.2
+            #     radius:[0,0,16,16]
+            #     padding:[0,dp(150)]
+            #     pos_hint:{"center_x":.5,"center_y":.5}
+            #     size_hint:0.8,None
+            #     height:dp(40)
+                
+                
+        
+        
+        
+        # BoxLayout:
+        #     orientation:"vertical"
+        #     size_hint:None,None
+        #     size:root.size[0],dp(50)
+        #     pos_hint:{"center_x":.5}
+        #     # canvas.before:
+        #     #     Color:
+        #     #         rgba:0,0,1,1
+        #     #     Rectangle:
+        #     #         pos: self.pos
+        #     #         size: self.size
+        #     #         source: 'background.png'
+        #         # Line:
+        #         #     bezier: self.x, self.y+self.height, self.x+self.width, self.y+self.height
+        #         #     width:dp(10)
+        #     Button:
+        #         text:"დაამატე ახალი სიტყვები"
+        #         color:0,0,0,1
+        #         font_size:sp(12)
+        #         markup:True
+        #         on_release:app.market.open()
+        #         # on_release:app.switch()#app.market.open()
+        #         size_hint:0.5,1
+        #         height:dp(40)
+        #         background_normal:''
+        #         background_color:0,0,0,.2
+        #         pos_hint:{"center_x":.5,"center_y":.5}
+        #         font_name:"BPG2.ttf"
+        #     Widget:
+        #         size_hint:1,None
+        #         height:dp(10)
+            # GameButton:
+            #     text:"თამაშის დაწყება"
+            #     on_release:app.root.current='hangman'
+            #     font_name:"BPG2.ttf"                
+            #     font_size:sp(18)
+            #     size_hint:None,1
+            #     width:dp(320)
+            #     pos_hint:{"center_x":.5,"center_y":.5}
+            
+            
+
+
+            
+
+
+        # self.bu()
+
