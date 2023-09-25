@@ -1,0 +1,243 @@
+<Hangman_Win>:
+    auto_dismiss:False
+    size_hint:0.5,0.5
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            text:"Sen moige"
+        BoxLayout:
+            
+            Button:
+                text:'gasvla'
+                
+                on_release:
+                    root.dismiss()
+                    app.root.current='main'
+                    app.main_screen.switch.current="listview"
+            Button:
+                text:"continue"
+                on_release:
+                    root.dismiss()
+                    root.restart()
+
+
+
+<Reklama>:
+    size_hint:0.5,0.5
+    auto_dismiss:False
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            text:"Sen waage"
+        Button:
+            text:"uyure reklamas da miighe erti shansi"
+            on_release:
+                root.hangman.chance()
+                print("shansi")
+                root.dismiss()
+    
+        Button:
+            text:"ar msurs"
+            on_release:
+                root.dismiss()
+                root.close()
+<Hangman_Lose>:
+    size_hint:0.5,0.5
+    auto_dismiss:False
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            text:"Sen waage"
+        Label:
+            text:f"sworia {root.correct}"
+            font_name:"DejaVuSans.ttf"
+        
+        BoxLayout:
+            Button:
+                text:'gasvla'
+                
+                on_release:
+                    root.dismiss()
+                    app.root.current='main'
+                    app.main_screen.switch.current="listview"
+            Button:
+                text:"restart"
+                on_release:
+                    root.dismiss()
+                    root.restart()
+            
+
+<Header>:
+    size_hint:1,None
+    height:dp(56)
+    balance:balance
+    md_bg_color:0,0,0,.3
+    pos_hint:{"center_x":.5}
+    BoxLayout:
+        size_hint:1,1
+        width:dp(320)
+        pos_hint:{"center_x":.5}
+        
+        
+
+            
+        BoxLayout:
+            id:balance
+            BoxLayout:
+                MDIconButton:
+                    size_hint:0.2,1
+                    icon:"arrow-left"
+                    on_release:app.root.current="main"
+                
+                BoxLayout:
+                    size_hint:0.8,1
+                    Label:
+                        text:"ბალანსი"    
+                        font_name:"BPG2.ttf"
+                        size_hint:0.7,1
+                        color:0,0,0,1
+                        # font_size:sp(15)
+                    Label:
+                        id:balance
+                        size_hint:0.3,1
+                        text:app.balance_str
+                        font_name:"BPG2.ttf"
+                        color:0,0,0,1
+                        # font_size:sp(25)
+                        pos_hint:{"x":0, "center_y":.5}
+        
+<GMHeader@BoxLayout>:
+    size_hint:1,None
+    height:dp(50)
+    md_bg_color:1,1,1,1
+    Label:
+        text:"შენი პროგრესი"
+        color:0,0,0,1
+        font_name:"BPG2.ttf"
+        halign:"left"
+    Widget:
+        size_hint:0.5,1
+    BoxLayout:
+        # size_hint:1,.3
+        # orientation:"vertical"
+        Label:
+            text:"ბალანსი"    
+            font_name:"BPG2.ttf"
+            color:0,0,0,1
+            # font_size:sp(18)
+        Label:
+            id:balance
+            # size_hint:1,0.8
+            # valign:"center"
+            text:app.balance_str
+            font_name:"BPG2.ttf"#"font/cartoon.ttf"                                
+            # font_size:sp(25)
+            color:0,0,0,1
+       
+<GameButton>:
+    background_normal:''
+    font_name:"BPG2.ttf"
+    # background_color:1,0,0,1
+    background_color:0,0,0,0
+    background_down:""
+    canvas:
+        Color:
+            rgba:1,1,1,0.6
+        Line:
+            rectangle:self.x,self.y, self.width,self.height
+        Color:
+            rgba:1,1,1,0.3
+        Rectangle:
+            size:self.size
+            pos:self.pos
+
+<DropDown_Button>:
+    # size_hint:1,None
+    # height:dp(40)
+    # background_normal:''
+    # # background_color:0,0,0,1
+    canvas:
+        Color:
+            rgba:1,1,0,.5
+        Line:
+            width: 1
+            rectangle: self.x, self.y, self.width, self.height
+    color:0,0,0,1
+
+
+
+<DropDown_Open_Button>:
+    canvas:
+        Color:
+            rgba:0,0,0,.5
+        Line:
+            width: 1
+            rectangle: self.x, self.y, self.width, self.height
+    background_normal:''
+    background_color:1,1,1,.0
+
+
+<Carousel_Item>:
+    voice_button:voice_button
+    show_translation:show_translation
+    pos_hint:{"center_x":.5}   
+    MDIconButton:
+        id:show_translation
+        
+
+        pos_hint:{"y":0, "x":0.025}
+        size_hint:1,1
+        font_size:sp(34)
+        on_release:app.show_translation()
+        size_hint:None,None
+        icon:"eye-outline"
+        theme_icon_color: "Custom"
+        icon_color:0,0,0,1
+        size:dp(40),dp(40)
+    MDIconButton:
+        id:voice_button
+        canvas.before:
+            Color:
+                rgba:0,0,0,.1
+            Ellipse:
+                # pos:self.x, self.y
+                # pos_hint:{"center_x":.5}
+                pos:self.x+self.width/5, self.y+self.height/5
+                size:self.width-self.width/2.5,self.height-self.height/2.5
+                # size:self.size
+        pos_hint:{"y":0, "x":0.85}
+        # size_hint:1,1
+        # font_size:sp(34)
+        on_release:app.voice_on_off()
+        size_hint:None,None
+        icon:"volume-high"
+        theme_icon_color: "Custom"
+        icon_color:0,0,0,0.2
+        size:dp(10),dp(10)
+        # background_normal:''
+        # background_color:0,0,1,1
+        
+        # font_name:"BPG2.ttf"
+
+<Hangman_key>:
+    size_hint:1,None
+    size:dp(40),dp(60)
+    on_release: 
+        app.root.children[0].guess(self)
+
+
+<WordList>:
+    size_hint_y:None
+    height:dp(60)
+    font_name:"BPG2.ttf"
+    md_bg_color:0,0,0,1
+    radius:[dp(5)]
+    on_release:app.open_carousel(self)
+   
+
+<VoiceButton>:
+    icon:"account-tie-voice"
+    on_release:app.voice(self.parent)
+    pos_hint:{"center_y":.5}
+
+
